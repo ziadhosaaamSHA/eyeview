@@ -1,4 +1,4 @@
-import type { CollectionConfig } from "payload";
+import type { CollectionConfig, CollectionSlug } from "payload";
 
 export const Categories: CollectionConfig = {
   slug: "categories",
@@ -13,10 +13,21 @@ export const Categories: CollectionConfig = {
       required: true,
     },
     {
-      name: "description",
-      type: "textarea",
+      name: "slug",
+      type: "text",
+      required: true,
+      unique: true,
+      index: true,
+    },
+    {
+      name: "color",
+      type: "text",
+    },
+    {
+      name: "parent",
+      type: "relationship",
+      relationTo: "categories" as CollectionSlug,
+      hasMany: false, // one parent per category
     },
   ],
 };
-
-

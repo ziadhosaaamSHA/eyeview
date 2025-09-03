@@ -146,6 +146,7 @@
   button {
     @apply hover:cursor-pointer;
   }
+
 }
 
 body {

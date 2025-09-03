@@ -35,4 +35,6 @@ export default buildConfig({
     payloadCloudPlugin(),
     // storage-adapter-placeholder
   ],
+  defaultDepth: 5
+
 })
