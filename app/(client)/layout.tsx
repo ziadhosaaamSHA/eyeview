@@ -22,10 +22,10 @@ export default async function RootLayout({
   const data = await payload.find({
     collection: 'categories' as CollectionSlug,
     pagination: false,
-    limit: 0
+    limit: 0,
+    sort: 'name',
   });
   const tree = buildTree(data.docs);
-  console.log(tree);
   return (
   <ClerkProvider>
     <html lang="en">

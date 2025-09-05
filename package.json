@@ -2,11 +2,15 @@
   "name": "eyeview",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "generate:types": "generate:types",
+    "db:fresh": "payload migrate:fresh",
+    "db:seed": "tsx seed.ts"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.31.6",
@@ -48,6 +52,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.5.2",
     "tailwindcss": "^4",
+    "tsx": "^4.20.5",
     "tw-animate-css": "^1.3.7",
     "typescript": "^5"
   }
