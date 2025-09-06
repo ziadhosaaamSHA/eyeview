@@ -1,13 +1,13 @@
 'use client'
 import React, { useState, useRef, useEffect } from 'react'
 import CategoryDropDown from './category-dropdown'
-import { Category } from '@/payload-types'
 import { Button } from '@/components/ui/button'
 import { ListFilterIcon } from 'lucide-react'
 import CategoriesSideBar from './categories-side-bar'
+import { CategoriesGetManyOutput, } from '@/modules/categories/types'
 
 interface CategoriesProps {
-    data: any[]
+    data: CategoriesGetManyOutput;
 }
 
 const Categories = ({ data }: CategoriesProps) => {
@@ -59,11 +59,11 @@ const Categories = ({ data }: CategoriesProps) => {
   return (
     <div className='relative w-full'>
 
-      <CategoriesSideBar open={isSideBarOpen} onOpenChange={setIsSideBarOpen} data={data}/>
+      <CategoriesSideBar open={isSideBarOpen} onOpenChange={setIsSideBarOpen}/>
       <div ref={measureRef} className='absolute opacity-0 pointer-events-none flex'
       style={{position: "fixed", top:-9999, left:-9999}}
       >
-      {data.map((category: Category) => (
+      {data.map((category: CategoriesGetManyOutput[1]) => (
         <div key={category.id} className='px-3'>
           <CategoryDropDown 
           category={category} 
@@ -74,7 +74,7 @@ const Categories = ({ data }: CategoriesProps) => {
       ))}
       </div>
       <div ref={containerRef}  className='flex flex-nowrap items-center justify-between'>
-      {data.slice(0, visibleCount).map((category: Category) => (
+      {data.slice(0, visibleCount).map((category: CategoriesGetManyOutput[1]) => (
         <div key={category.id} className='px-3'>
           <CategoryDropDown 
           category={category} 

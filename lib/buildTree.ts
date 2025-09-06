@@ -1,4 +1,6 @@
-export function buildTree(categories: any[]) {
+import { CustomCategory } from "@/app/(client)/types";
+
+export function buildTree(categories: CustomCategory[]): CustomCategory[] {
   const map = new Map();
   const roots: any[] = [];
 

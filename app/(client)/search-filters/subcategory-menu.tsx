@@ -1,13 +1,13 @@
+import { CategoriesGetManyOutputSingle } from '@/modules/categories/types';
 import Link from 'next/link';
 import React from 'react'
-import { CustomCategory } from '../types';
 
 interface Props {
-    category: CustomCategory;
+    category: CategoriesGetManyOutputSingle;
     isOpen: boolean;
     position: { top: number; left: number };
-    
 }
+
 
 function SubcategoryMenu({ category, isOpen, position }: Props) {
     if (!isOpen || !category.subcategories || (category.subcategories ?? []).length === 0) {
@@ -27,13 +27,13 @@ function SubcategoryMenu({ category, isOpen, position }: Props) {
             <div className='w-full h-3'>
                 </div>
                 <div className='w-full overflow-y-scroll max-h-[400px] overflow-x-hidden text-black bg-white rounded-md flex flex-wrap'>
-                    {category.subcategories?.map((subcategory: CustomCategory) => (
+                    {category.subcategories?.map((subcategory: CategoriesGetManyOutputSingle) => (
                         <div key={subcategory.slug} className='mr-4'>
                         <Link className='text-left m-4 flex justify-between items-center' href={`/category/${category.slug}/${subcategory.slug}`}>
                             <p className='font-medium text-md text-shop_dark_green w-full'>{subcategory.name}</p>
                         </Link>
                         <div className='sub_of_subcategories w-full'>
-                            {subcategory.subcategories?.map((subsubcategory: CustomCategory) => (
+                            {subcategory.subcategories?.map((subsubcategory: CategoriesGetManyOutputSingle) => (
                                 <Link key={subsubcategory.slug} className='w-full text-left ml-8 mb-5 flex justify-between items-center font-medium' href={`/category/${category.slug}/${subcategory.slug}/${subsubcategory.slug}`}>
                                     <p className='text-sm'>{subsubcategory.name}</p>
                                 </Link>
