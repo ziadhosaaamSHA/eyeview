@@ -1,13 +1,15 @@
-import React, { Suspense } from "react";
-import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
+import React from "react";
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import {ClerkProvider} from "@clerk/nextjs"
-import SearchFilters from "./search-filters"
-import { TRPCReactProvider } from '@/trpc/client';
-import { getQueryClient, trpc } from '@/trpc/server';
+import { Poppins } from "next/font/google";
+import { TRPCReactProvider } from "@/trpc/client";
+import { Toaster } from "sonner";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-poppines",
+});
 
 export const metadata: Metadata = {
   title: "ShopCart",
@@ -19,31 +21,16 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const queryClient = getQueryClient();
-  void queryClient.prefetchQuery(
-    trpc.categories.getMany.queryOptions()
-  );
+
 
   return (
-  <ClerkProvider>
     <html lang="en">
-      <body className="font-poppines antialiased">
-        <div className="flex flex-col min-h-screen">
-        <Header />
-        <TRPCReactProvider>
-        <HydrationBoundary state={dehydrate(queryClient)}>
-          <Suspense fallback={<div className="p-4">Loading filters...</div>}>
-            <SearchFilters />
-          </Suspense>
-          <main className="flex-1">
-              {children}
-            </main>
-        </HydrationBoundary>
-            </TRPCReactProvider>
-          <Footer />
-        </div>
+      <body className={`${poppins.variable} font-sans antialiased`}>
+      <TRPCReactProvider>
+        {children}
+        <Toaster position="top-right" richColors />
+      </TRPCReactProvider>
       </body>
     </html>
-  </ClerkProvider>
   );
 }

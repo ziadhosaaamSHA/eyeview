@@ -13,7 +13,7 @@
     "db:seed": "tsx seed.ts"
   },
   "dependencies": {
-    "@clerk/nextjs": "^6.31.6",
+    "@hookform/resolvers": "^5.2.1",
     "@payloadcms/db-mongodb": "^3.54.0",
     "@payloadcms/next": "^3.54.0",
     "@payloadcms/payload-cloud": "^3.54.0",
@@ -45,6 +45,7 @@
     "payload": "^3.54.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "react-hook-form": "^7.62.0",
     "server-only": "^0.0.1",
     "styled-components": "^6.1.19",
     "superjson": "^2.2.2",

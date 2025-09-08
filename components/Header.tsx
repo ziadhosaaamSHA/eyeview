@@ -6,11 +6,8 @@ import CartIcon from './CartIcon'
 import FavoriteButton from './FavoriteButton'
 import SignIn from './SignIn'
 import MobileMenu from './MobileMenu'
-import { currentUser } from '@clerk/nextjs/server'
-import { ClerkLoaded, SignedIn, UserButton } from '@clerk/nextjs'
 
 const Header = async() => {
-  const user = await currentUser();
 
   return (
     <header className='bg-white py-4 border-b border-gray-200 shadow-sm sticky top-0 z-50'>
@@ -27,12 +24,7 @@ const Header = async() => {
           <SearchBar />
           <CartIcon />
           <FavoriteButton />
-          <ClerkLoaded>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
             <SignIn />
-          </ClerkLoaded>
         </div>
       </Container>
     </header>
